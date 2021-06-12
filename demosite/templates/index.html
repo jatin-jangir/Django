@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text transformer</title>
+</head>
+<body>
+    <h1> text transformer </h1>
+ 
+<br>
+<hr/>
+<!--form action="/analyse" method="get"-->
+<form action="/analyse" method="POST">{% csrf_token %}
+        <textarea name="text"
+        style="margin: 2px;
+         width: 714px;
+         height: 94px;
+         position: fixed;
+         left: 20%;
+         background-color: azure;
+         text-decoration-color: brown;
+         text-align: center;"></textarea>
+         <br>
+         <input type="checkbox" name="removepunc" >remove punctuation
+         <br>
+         <input type="checkbox" name="capital" >capitalize first
+         <br>
+         <input type="checkbox" name="removenum" >remove numbers
+         <br>
+         <input type="checkbox" name="removespace" >remove space
+         <br>
+         <button type="submit">analyse text</button>
+         <br>
+</form>
+<br><br><br><br><br><br>
+<hr/>
+<a href="http://127.0.0.1:8000/about"><button type="button">about us</button></a>
+<br>
+<hr/>
+</body>
+</html>
