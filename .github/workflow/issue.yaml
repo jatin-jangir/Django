@@ -14,6 +14,6 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.PAGERDUTY_DISCORD_WEBHOOK}}
           
-        uses: devtron-labs/action-discord@master
+        uses: jatin-jangir/action-discord@master
         with:
           args: " [ **${{ github.event.issue.title}}** ](${{github.event.issue.html_url}})"
