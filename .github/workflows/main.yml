@@ -16,4 +16,4 @@ jobs:
           
         uses: jatin-jangir/action-discord@master
         with:
-          args: " [ **${{ github.event.issue.title}}** ](${{github.event.issue.html_url}})"
+          args: " ${{ github.event.issue.title}} ${{github.event.issue.html_url}}"
