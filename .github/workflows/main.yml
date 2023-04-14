@@ -13,6 +13,6 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD }}
           
-        uses: jatin-jangir/action-discord@master
+        uses: devtron-labs/action-discord@master
         with:
           args: " [ **${{ github.event.issue.title}}** ](${{github.event.issue.html_url}})"
