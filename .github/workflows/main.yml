@@ -3,7 +3,7 @@ name: Sync issue to Azure DevOps work item (testing)
 on:
   issues:
     types:
-      [ opened ]
+      [ opened, labeled ]
 jobs:
   create_issues:
     runs-on: ubuntu-latest
