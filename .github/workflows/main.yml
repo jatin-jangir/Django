@@ -19,7 +19,11 @@ jobs:
         path: pager_duty_issues.txt
       continue-on-error: true
 
-    - name: Create artifact if it doesn't exist
+    - name: Create new file
+      if: job.steps.check-artifact.status == failure() 
+      run: touch pager_duty_issues.txt
+      
+    - name: Create artifact if it does not exist
       if: job.steps.check-artifact.status == failure() 
       uses: actions/upload-artifact@v2
       with:
