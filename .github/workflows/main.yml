@@ -13,11 +13,7 @@ jobs:
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD }}
         DISCORD_WEBHOOK_FORUM: ${{ secrets.DISCORD_FORUM }}
-        DISCORD_FORUM_CHANNEL_ID: ${{ secrets.DISCORD_FORUM_CHANNEL_ID }}
         ENABLE_FORUM: true
-        FILE_NAME: ${{ secrets.FILE_NAME }}
-        GIST_ID: ${{ secrets.GIST_ID }}
-        GITHUB_PAT: ${{ secrets.GIT_PAT }}
 
       uses: jatin-jangir/action-discord@master
       with:
