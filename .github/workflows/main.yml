@@ -16,6 +16,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: pager_duty_issues.txt
+        path: pager_duty_issues.txt
       continue-on-error: true
 
     - name: Create artifact if it doesn't exist
