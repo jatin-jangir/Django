@@ -8,6 +8,22 @@ jobs:
   create_issues:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Add comment to issue
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const issue_number = context.payload.pull_request.issue_url.split('/').pop();
+          const comment_body = 'thread created.';
+          const octokit = require('@octokit/rest')();
+          octokit.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issue_number,
+            body: comment_body
+          });
     - if: contains(github.event.issue.labels.*.name, 'pager-duty')
       name: custom issues
       env:
