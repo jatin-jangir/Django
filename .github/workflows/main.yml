@@ -20,10 +20,12 @@ jobs:
       continue-on-error: true
 
     - name: Create artifact if it doesn't exist
-      if: ${{ failure() }}
-      run: |
-        echo "Creating pager_duty_issues.txt"
-        # Add code here to create the YAML file and add it to the artifact
+      if: job.steps.check-artifact.status == failure() 
+      uses: actions/upload-artifact@v2
+      with:
+        name: pager_duty_issues.txt
+        path: pager_duty_issues.txt
+      
 
     - name: Check if issue URL exists
       id: check-issue
