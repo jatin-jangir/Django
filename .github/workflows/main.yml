@@ -8,7 +8,7 @@ jobs:
   create_issues:
     runs-on: ubuntu-latest
     steps:
-    - if: github.event.issue.labels.name == 'pager-duty'
+    - if: github.event.label.name == 'pager-duty'
       name: custom issues
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD }}
