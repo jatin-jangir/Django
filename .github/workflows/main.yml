@@ -10,6 +10,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
+    - name: debug1
+      run: ls
 
     - name: condition if artifact exists
       id: check-artifact
@@ -22,6 +25,9 @@ jobs:
       if: job.steps.check-artifact.status != failure() 
       run: exit 1
       
+    - name: debug2
+      run: ls
+      
     - name: Create new file
       if: job.steps.check-artifact.status == failure() 
       run: touch pager_duty_issues.txt
@@ -33,7 +39,9 @@ jobs:
         name: pager_duty_issues.txt
         path: pager_duty_issues.txt
       
-
+    - name: debug3
+      run: cat pager_duty_issues.txt
+      
     - name: Check if issue URL exists
       id: check-issue
       run: |
@@ -45,7 +53,10 @@ jobs:
           # Add code here to run the script that creates a new issue with the specified URL
           echo '${{ github.event.issue.html_url }}' >> pager_duty_issues.txt
         fi
-    
+        
+    - name: debug4
+      run: cat pager_duty_issues.txt
+      
     - if: contains(github.event.issue.labels.*.name, 'pager-duty')
       name: custom issues
       env:
