@@ -8,55 +8,6 @@ jobs:
   create_issues:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
-    - name: debug1
-      run: ls
-
-    - name: condition if artifact exists
-      id: check-artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: pager_duty_issues.txt
-      continue-on-error: true
-      
-    - name: Check if artifact exists
-      if: job.steps.check-artifact.status != failure() 
-      run: exit 1
-      
-    - name: debug2
-      run: ls
-      
-    - name: Create new file
-      if: job.steps.check-artifact.status == failure() 
-      run: touch pager_duty_issues.txt
-    
-    - name: Create artifact if it does not exist
-      if: job.steps.check-artifact.status == failure() 
-      uses: actions/upload-artifact@v2
-      with:
-        name: pager_duty_issues.txt
-        path: pager_duty_issues.txt
-      
-    - name: debug3
-      run: cat pager_duty_issues.txt
-      
-    - name: Check if issue URL exists
-      id: check-issue
-      run: |
-        if grep -q '${{ github.event.issue.html_url }}' pager_duty_issues.txt; then
-          echo "Issue URL exists"
-          exit 0
-        else
-          echo "Issue URL does not exist"
-          # Add code here to run the script that creates a new issue with the specified URL
-          echo '${{ github.event.issue.html_url }}' >> pager_duty_issues.txt
-        fi
-        
-    - name: debug4
-      run: cat pager_duty_issues.txt
-      
     - if: contains(github.event.issue.labels.*.name, 'pager-duty')
       name: custom issues
       env:
@@ -64,6 +15,9 @@ jobs:
         DISCORD_WEBHOOK_FORUM: ${{ secrets.DISCORD_FORUM }}
         DISCORD_FORUM_CHANNEL_ID: ${{ secrets.DISCORD_FORUM_CHANNEL_ID }}
         ENABLE_FORUM: true
+        FILE_NAME: ${{ secrets.FILE_NAME }}
+        GIST_ID: ${{ secrets.GIST_ID }}
+        GITHUB_PAT: ${{ secrets.GIT_PAT }}
 
       uses: jatin-jangir/action-discord@master
       with:
