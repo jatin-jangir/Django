@@ -15,6 +15,6 @@ jobs:
         DISCORD_WEBHOOK_FORUM: ${{ secrets.DISCORD_FORUM }}
         ENABLE_FORUM: true
 
-      uses: jatin-jangir/action-discord@master
+      uses: devtron-labs/action-discord@master
       with:
         args: " ${{ github.event.issue.title }} ${{ github.event.issue.html_url }}"
