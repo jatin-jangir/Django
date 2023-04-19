@@ -13,7 +13,7 @@ jobs:
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD }}
         DISCORD_WEBHOOK_FORUM: ${{ secrets.DISCORD_FORUM }}
-        ENABLE_FORUM: false
+        ENABLE_FORUM: true
 
       uses: jatin-jangir/action-discord@master
       with:
